@@ -1,0 +1,41 @@
+debug = false
+sendAnonymousUsage = true
+logLevel = "INFO"
+defaultEntryPoints = ["https","http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+  [entryPoints.dashboard]
+  address = ":21222"
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+#domain = "tams.tech"
+watch = true
+exposedByDefault = false
+
+[acme]
+email = "sysadmin@tams.tech"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+# Uncomment for staging server
+# caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+[acme.httpChallenge]
+entryPoint = "http"
+
+[accessLog]
+  [accessLog.filters]
+  statusCodes = ["400-599"]
+  retryAttempts = true
+
+[api]
+entryPoint = "dashboard"
