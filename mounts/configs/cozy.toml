@@ -1,0 +1,15 @@
+#
+#[backends]
+#	[backends.cozy_vm]
+#		[backends.cozy_vm.servers.one]
+#			url = "http://192.168.122.191:8080"
+#
+#[frontends]
+#	[frontends.cozy_vm_https]
+#		entryPoints = ["https"]
+#		backend = "cozy_vm"
+#		passHostHeader = true
+#		[frontends.cozy_vm_https.routes]
+#			[frontends.cozy_vm_https.routes.one]
+#				rule = "Host:*.cozy.tams.tech,cozy.tams.tech"
+#

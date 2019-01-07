@@ -12,8 +12,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./mounts/traefik.toml:/traefik.toml
+      - ./mounts/configs/:/traefik.conf.d/
       - ./mounts/acme.json:/acme.json
+      - ./mounts/application_default_credentials.json:/gce_credentials.json
     container_name: traefik
+    environment:
+      GCE_SERVICE_ACCOUNT_FILE: /gce_credentials.json
+      GCE_PROJECT: dns-automation-207619
 
 networks:
   web:

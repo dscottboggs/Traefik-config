@@ -4,6 +4,7 @@ Requires=docker-public-network.service
 
 [Service]
 ExecStart=/usr/local/bin/docker-compose --file /media/deployments/traefik/docker-compose.yml up --build
+ExecStop=/usr/local/bin/docker-compose --file /media/deployments/traefik/docker-compose.yml down
 
 [Install]
 WantedBy=multi-user.target

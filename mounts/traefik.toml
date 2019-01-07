@@ -1,6 +1,7 @@
 debug = false
 sendAnonymousUsage = true
 logLevel = "INFO"
+#logLevel = "DEBUG"
 defaultEntryPoints = ["https","http"]
 
 [entryPoints]
@@ -23,14 +24,16 @@ watch = true
 exposedByDefault = false
 
 [acme]
-email = "sysadmin@tams.tech"
-storage = "acme.json"
-entryPoint = "https"
-onHostRule = true
-# Uncomment for staging server
-# caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
-[acme.httpChallenge]
-entryPoint = "http"
+  email = "sysadmin@tams.tech"
+  storage = "acme.json"
+  entryPoint = "https"
+  onHostRule = true
+  # Uncomment for staging server
+  # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  #[acme.httpChallenge]
+  #  entryPoint = "http"
+  [acme.dnsChallenge]
+    provider = "gcloud"
 
 [accessLog]
   [accessLog.filters]
@@ -39,3 +42,7 @@ entryPoint = "http"
 
 [api]
 entryPoint = "dashboard"
+
+[file]
+  directory = "/traefik.conf.d/"
+  watch = true
